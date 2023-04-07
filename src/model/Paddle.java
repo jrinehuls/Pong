@@ -11,14 +11,12 @@ public class Paddle extends Rectangle{
     private final Color COLOR;
     public static final int WIDTH = 50;
     public static final int HEIGHT = 200;
-    public PongPanel panel;
 
-    public Paddle(int xLocation, int yLocation, Color color, PongPanel panel) {
+    public Paddle(int xLocation, int yLocation, Color color) {
         super(xLocation, yLocation, WIDTH, HEIGHT);
         this.COLOR = color;
         this.xLocation = xLocation;
         this.yLocation = yLocation;
-        this.panel = panel;
 
     }
 
@@ -36,7 +34,7 @@ public class Paddle extends Rectangle{
     }
 
     public boolean isBottomCollision() {
-        if(this.yLocation >= panel.SCREEN_HEIGHT - HEIGHT) {
+        if(this.yLocation >= PongPanel.SCREEN_HEIGHT - HEIGHT) {
             return true;
         } else {
             return false;
