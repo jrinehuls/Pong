@@ -9,7 +9,6 @@ public class PongFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(new PongPanel());
         this.pack();
-        this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
