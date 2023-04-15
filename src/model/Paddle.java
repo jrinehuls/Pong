@@ -13,7 +13,7 @@ public class Paddle extends Rectangle{
     private final Color COLOR;
     public static final int WIDTH = 50;
     public static final int HEIGHT = 200;
-    public static final int SPEED = 5;
+    private static int speed = 5;
 
     public Paddle(int xLocation, int yLocation, Color color) {
         super(xLocation, yLocation, WIDTH, HEIGHT);
@@ -54,5 +54,13 @@ public class Paddle extends Rectangle{
 
     public int getXLocation() {
         return xLocation;
+    }
+
+    public static int getSpeed() {
+        return speed;
+    }
+
+    public static void setSpeed(int speed) {
+        Paddle.speed = speed;
     }
 }

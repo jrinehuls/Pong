@@ -11,7 +11,7 @@ import java.awt.*;
 public class PongPanel extends JPanel implements Runnable{
 
     public static final int SCREEN_WIDTH = 1260;
-    public static final int SCREEN_HEIGHT = 700;
+    public static final int SCREEN_HEIGHT = (int)(SCREEN_WIDTH / 1.8);
     private boolean winner = false;
 
     Paddle paddle1;
@@ -60,13 +60,13 @@ public class PongPanel extends JPanel implements Runnable{
 
     public void movePaddles() {
         if (keyHandler.wPressed && !paddle1.isTopCollision()) {
-            paddle1.setYLocation(paddle1.getYLocation() - Paddle.SPEED);
+            paddle1.setYLocation(paddle1.getYLocation() - Paddle.getSpeed());
         } if (keyHandler.sPressed && !paddle1.isBottomCollision()) {
-            paddle1.setYLocation(paddle1.getYLocation() + Paddle.SPEED);
+            paddle1.setYLocation(paddle1.getYLocation() + Paddle.getSpeed());
         } if (keyHandler.upPressed && !paddle2.isTopCollision()) {
-            paddle2.setYLocation(paddle2.getYLocation() - Paddle.SPEED);
+            paddle2.setYLocation(paddle2.getYLocation() - Paddle.getSpeed());
         } if (keyHandler.downPressed && !paddle2.isBottomCollision()) {
-            paddle2.setYLocation(paddle2.getYLocation() + Paddle.SPEED);
+            paddle2.setYLocation(paddle2.getYLocation() + Paddle.getSpeed());
         }
     }
 
@@ -85,12 +85,13 @@ public class PongPanel extends JPanel implements Runnable{
             }
             ball = new Ball((SCREEN_WIDTH - Ball.DIAMETER)/2,
                     (SCREEN_HEIGHT - Ball.DIAMETER)/2, Color.ORANGE);
+            Paddle.setSpeed(ball.getSpeed());
             ball.serve();
         }
     }
 
     public void checkWinner() {
-        int winningScore = 3;
+        int winningScore = 15;
         if (score1.getScore() == winningScore) {
             winner = true;
             winnerLabel.setText("PLAYER 1 WINS!!!");

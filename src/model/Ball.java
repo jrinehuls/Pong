@@ -38,13 +38,19 @@ public class Ball {
     }
 
     public void checkWallCollision() {
+        int yAcceleration = 1;
         if (yLocation >= PongPanel.SCREEN_HEIGHT - DIAMETER || yLocation <= 0) {
-            ySpeed = -ySpeed;
+            if (ySpeed > 0) {
+                ySpeed = -(ySpeed + yAcceleration);
+            } else if (ySpeed < 0) {
+                ySpeed = -(ySpeed - yAcceleration);
+            }
+            Paddle.setSpeed(Paddle.getSpeed() + yAcceleration);
         }
     }
 
     public void checkPaddleFaceCollision(Paddle paddle) {
-        int acceleration = 1;
+        int xAcceleration = 1;
         // Left paddle
         if (paddle.getXLocation() < PongPanel.SCREEN_WIDTH / 2) {
             if (getYLocation() > +paddle.getYLocation() - DIAMETER / 2 &&
@@ -52,8 +58,7 @@ public class Ball {
                     getXLocation() <= Paddle.WIDTH &&
                     getXLocation() >= Paddle.WIDTH / 2) {
                 setXLocation(Paddle.WIDTH);
-
-                xSpeed = -xSpeed + acceleration;
+                xSpeed = -xSpeed + xAcceleration;
             }
         }
         // Right paddle
@@ -63,7 +68,7 @@ public class Ball {
                     getXLocation() >= PongPanel.SCREEN_WIDTH - Paddle.WIDTH - DIAMETER &&
                     getXLocation() <= PongPanel.SCREEN_WIDTH - Paddle.WIDTH / 2 - DIAMETER) {
                 setXLocation(PongPanel.SCREEN_WIDTH - Paddle.WIDTH - DIAMETER);
-                xSpeed = - (xSpeed + acceleration);
+                xSpeed = - (xSpeed + xAcceleration);
             }
         }
     }
