@@ -6,11 +6,14 @@ import java.awt.*;
 
 public class Paddle extends Rectangle{
 
+
+
     private int xLocation;
     private int yLocation;
     private final Color COLOR;
     public static final int WIDTH = 50;
     public static final int HEIGHT = 200;
+    public static final int SPEED = 5;
 
     public Paddle(int xLocation, int yLocation, Color color) {
         super(xLocation, yLocation, WIDTH, HEIGHT);
@@ -47,5 +50,9 @@ public class Paddle extends Rectangle{
 
     public void setYLocation(int yLocation) {
         this.yLocation = yLocation;
+    }
+
+    public int getXLocation() {
+        return xLocation;
     }
 }
